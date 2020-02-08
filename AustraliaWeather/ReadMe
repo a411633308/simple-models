@@ -1,0 +1,21 @@
+# Australia Weather Prediction
+### Preproce
+The DATE attribute describes the collected data, which starts from Jan 1, 2013, to Jul 20, 2018, with 2036 days in total. Only samples from 2013 to 2015 contains the 12 moths records. Observations from 2016 are rare, as for from 2017 or from 2018 are without from 2 or 3 months.
+During analyzing, text values from the date attribute can raise errors, so that the author has transformed string to timestamp.
+
+The LOCATION attribute describes the collected places, which come mainly from Perth with 1592 samples. Because string value can not be analyzed in python, the following dictionary is the presentation of the original 6 locations, namely "{'WaggaWagga':1, 'AliceSprings':2, 'Sydney':3, 'Melbourne':4, 'Darwin':5, 'Perth':6, 'Portland':7, 'Brisbane':8} :". 
+
+The reason why the author does not use attributes of LATITUDE and LONGITUDE is that the location contains already similar information. In another world, it is acceptable to use only one of them, namely only use LATITUDE and LONGITUDE or only LOCATION. 
+
+### models 
+average KNN with 3 different k parameters, logistic Regression with default parameters and Multiplayer Perception Classifier with 5000 hidden layers 
+are used in python. The exact function and some plot are implemented with R.
+
+### results
+The average distances of observations to their nearest neighbors are a crucial measurement for classification. The results for all four models used the same confidence. However, the differences between the four models are, unfortunately, small, although the 15-KNN model performs the best. 
+It is not particularly surprising to get this result, as shown in Figure 5, many red dots have not only red dots but also green dots in the neighborhood. Furthermore, there is a red dot in the middle of a bunch of green dots. Therefore, the KNN model cannot entirely distinguish two clusters. However, because of the large amount of data, the density of data points in the original data space is large, so the overall performance of the simple model is also not bad.
+
+With the "roc()" function from the "pROC" library, the performance of Logistic Regression is excellent, like in figure 9. The area under the roc curve, namely the AUC, is 0.9084, outstanding. Though using the same input python model results even better, it is incredibly close to 1, like in figure 10.
+According to the author's not too short analysis experience, this result is almost perfect. Not only the accuracy of the two classes but also the recall are both ridiculous. To be more comprehensive, the visualization with the predicted labels from the test model is nearly the same. Although the model established by r language is already perfect, the model implemented by python is perfect.
+
+Although the results of the multilayer perceptron are also excellent, compared with the fast and accurate performance of logistic regression, neural networks are not the most suitable model at present.For each different project, it is most important to obtain the model that meets the requirements with minimal calculation and time cost.
